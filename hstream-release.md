@@ -19,7 +19,9 @@ HStream 集群由若干个对等的 HStreamDB 节点组成，
 
 <figure>
 <img src="pic/hstream-arch.png" alt="HStreamDB 整体架构" id="fig:hstream-arch" /><figcaption>HStreamDB 整体架构<span label="fig:hstream-arch"></span></figcaption>
-</figure>HStream Server (HServer) 作为 HStreamDB 的核心计算组件，
+</figure>
+
+HStream Server (HServer) 作为 HStreamDB 的核心计算组件，
 其本身被设计为无状态的， 它主要负责客户端的连接管理，安全认证， SQL
 解析，SQL 优化， 以及流计算任务的创建、调度、执行和管理等。
 
