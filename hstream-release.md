@@ -1,5 +1,6 @@
-HStreamDB 项目概述
-==================
+# 流时代的答案：EMQ 流数据库 HStreamDB 正式开源！
+
+## HStreamDB 项目概述
 
 上一篇文章\[链接\]中我们跟大家介绍了流数据库这一全新的数据库品类，
 相信大家对流数据库的概念有了基本的了解，
@@ -101,13 +102,13 @@ HStream Storage (HStore) 可分为以下几个层次：
 4.  二级存储层。 该层为多种长期存储系统提供统一的接口， 支持诸如 HDFS,
     AWS S3 等， 实现实时数据和历史数据的统一访问。
 
-HStreamDB 功能特性
-==================
+## HStreamDB 功能特性
 
 <figure>
 <img src="pic/hstream-features.png" alt="HStreamDB 功能架构" id="fig:hstream-features" /><figcaption>HStreamDB 功能架构<span label="fig:hstream-features"></span></figcaption>
-</figure>基于 SQL 的数据流处理
----------------------
+</figure>
+
+### 基于 SQL 的数据流处理
 
 HStreamDB 提供基于事件时间的完整的流处理能力,不仅支持基本的过滤、转
 换操作,还支持按 key 做聚合计算,基于多种时间窗口的计算,以及数据流 之间
@@ -116,8 +117,7 @@ join 的能力,同时也支持乱序和晚到的消息的特殊处理,保证计�
 需学习任何三方 API。HStream 的流处理还提供了丰富的扩展能力,用户
 可以针对自己的业务自行扩展。
 
-数据流的物化查询
-----------------
+### 数据流的物化查询
 
 高效的增量计算引擎，timely flow， 支持快速的增量计算，
 维护大规模物化视图的实时更新。
@@ -126,8 +126,7 @@ HStreamDB 提供了物化视图的功能,支持在持续更新的数据流上进
 HStream 内部会根据数据流的变化实时更新物化视图,用户可通过 SQL
 语句查询物化视图获得实时的数据洞察。
 
-数据流管理
-----------
+### 数据流管理
 
 支持创建大量的数据流，
 在大量数据流并发写入的情况下仍然能够保持稳定的低延迟。
@@ -137,8 +136,7 @@ HStream 内部会根据数据流的变化实时更新物化视图,用户可通�
 模型,能够灵活应对不同的业务需求。同时 HStream 集群能够支持百万量 级的
 Topic,在大量 Topic 数据写入的情况下依然能保证稳定的消费时延。
 
-数据流的持久化存储
-------------------
+### 数据流的持久化存储
 
 方案提供低延时的可靠的数据流存储,保证写入的数据消息不丢失,并
 且能够重复消费。HStream 会将写入的数据消息复制到多个存储节点,提
@@ -146,39 +144,33 @@ Topic,在大量 Topic 数据写入的情况下依然能保证稳定的消费时�
 服务上,比如对象存储,分布式文件存储等,存储的容量可无限扩展,能够
 实现数据的永久存储。
 
-数据流的 Schema 管理
---------------------
+### 数据流的 Schema 管理
 
 HStreamDB 提供了内建的 Schema 管理功能,支持包括 Json, Avro, Protobuf 等
 多种格式的 Schema 存储,同时也支持 Schema 的演化,管理多版本 Schema
 之间的兼容性。通过 Schema 能够提升数据消息的质量,简化消费的流程,
 避免很多不必要的数据错误。
 
-数据流的接入和分发
-------------------
+### 数据流的接入和分发
 
 HStreamDB 提供了和包括 MQTT Broker, MySQL,ElasticSearch, Redis 等多
 种数据系统相连接的 Connector,方便用户和外部的数据系统进行集成。
 
-安全机制
---------
+### 安全机制
 
 HStreamDB 提供包括 TLS 加密传输,基于 OAuth, JWT 等的身份认证以及授
 权机制,同时预留了安全插件的接口,用户可根据需要对默认的安全机制进
 行扩展。
 
-监控和运维工具
---------------
+### 监控和运维工具
 
 HStreamDB 提供了基于 Web 的控制台,包含大量的系统仪表盘和可视化图表,
 能够对集群机器状态,系统关键指标等进行详细的监控,方便运维人员对集
 群进行管理。
 
-HStreamDB 应用场景
-==================
+### HStreamDB 应用场景
 
-实时数据分析
-------------
+### 实时数据分析
 
 传统的数据分析通常基于批处理技术，
 批处理一般是在预先收集好的有限的数据集上运行，
@@ -189,8 +181,7 @@ HStreamDB 应用场景
 不但能提供更实时的数据洞察，
 而且避免了周期性调度批处理任务的易出错和复杂性。
 
-事件驱动应用
-------------
+### 事件驱动应用
 
 事件驱动应用通常是根据到来的事件实时触发对应的动作或行为，
 它可以是无状态的或者带状态的， 比如： 金融交易中的实时欺诈检测，
@@ -198,8 +189,7 @@ HStreamDB 应用场景
 实现这些复杂的事件驱动应用可能仅仅需要几条 SQL 语句，
 大大降低了开发和维护这些应用的成本。
 
-实时数据管道
-------------
+### 实时数据管道
 
 企业内部往往需要在多个数据系统之间进行数据同步和迁移，
 比如将在线的事务数据库中的数据拷贝到离线的数据仓库进行分析，
@@ -209,8 +199,7 @@ HStreamDB 应用场景
 能够非常方便地搭建实时的数据管道，
 实现实时构建索引，实时构建缓存等数据同步任务。
 
-在线机器学习
-------------
+### 在线机器学习
 
 如今机器学习系统在业务系统中起着越来越重要的作用，
 包括搜索、推荐、风控等背后都广泛依赖机器学习系统。
@@ -219,21 +208,18 @@ HStreamDB 应用场景
 的实时计算引擎能够助力机器学习系统的实时化，
 实现在线特征提取，实时推荐等应用。
 
-HStreamDB 快速上手
-==================
+## HStreamDB 快速上手
 
 下面我们将基于 docker 快速上手使用 HStreamDB。
 
-拉取 docker 镜像
-------------
+### 拉取 docker 镜像
 
 ```sh
 docker pull hstreamdb/logdevice
 docker pull hstreamdb/hstream
 ```
 
-在 docker 中启动一个本地的 HStream Server
-------------
+### 在 docker 中启动一个本地的 HStream Server
 
 #### 创建一个目录用于存储数据 
 
@@ -247,15 +233,13 @@ mkdir ./dbdata
 docker run -td --rm --name some-hstream-store -v dbdata:/data/store --network host hstreamdb/logdevice ld-dev-cluster --root /data/store --use-tcp
 ```
 
-### 启动 HStreamDB Server
+#### 启动 HStreamDB Server
 
 ```sh
 docker run -it --rm --name some-hstream-server -v dbdata:/data/store --network host hstreamdb/hstream hstream-server --port 6570 -l /data/store/logdevice.conf
 ```
 
-启动 HStreamDB CLI
-------------
-
+### 启动 HStreamDB CLI
 
 ```sh
 docker run -it --rm --name some-hstream-cli -v dbdata:/data/store --network host hstreamdb/hstream hstream-client --port 6570
@@ -276,8 +260,7 @@ Command
 >
 ```
 
-创建数据流 
-------------
+### 创建数据流 
 
 下面我们将用 `CREATE STREAM` 语句创建一个新的数据流，
 
@@ -299,8 +282,7 @@ Right
     )
 ```
 
-执行一个持续查询 
-------------
+### 执行一个持续查询 
 
 我们使用 `SELECT` 语句来对数据流进行实时处理和分析。
 在 CLI 中执行以下语句，
@@ -316,15 +298,13 @@ SELECT * FROM demo WHERE humidity > 70 EMIT CHANGES;
 相反它会一直执行下去，
 除非你显式的终止它。
 
-开启一个新的 CLI 会话
------------------------------
+### 开启一个新的 CLI 会话
 
 ```sh
 docker exec -it some-hstream-cli hstream-client --port 6570
 ```
 
-向数据流中插入数据
------------------------------
+#### 向数据流中插入数据
 
 执行以下 `INSERT` 语句向数据流中写入数据， 
 
@@ -345,8 +325,7 @@ INSERT INTO demo (temperature, humidity) VALUES (28, 86);
 {"temperature":28,"humidity":86}
 ```
 
-HStreamDB 开源社区和发展规划
-============================
+## HStreamDB 开源社区和发展规划
 
 EMQ 作为一家开源基础软件供应商，
 我们始终坚信开源的价值与力量，
